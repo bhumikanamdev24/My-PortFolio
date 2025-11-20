@@ -1,0 +1,212 @@
+/* index.css */
+
+/* ====== Base & Smooth Scroll ====== */
+:root{
+  --bg: #ffffff;
+  --surface: #f8f9fa;    /* light gray card */
+  --muted: #6c757d;
+  --text: #212529;
+  --primary: #0dcaf0;    /* sky blue */
+  --accent: #7aa7ff;
+  --glass: rgba(255,255,255,0.6);
+}
+
+[data-theme="dark"]{
+  --bg: #071126;
+  --surface: #0f1724;
+  --muted: #9aa7b8;
+  --text: #e6eef8;
+  --primary: #66dfff;
+  --accent: #7aa7ff;
+  --glass: rgba(10,14,20,0.45);
+}
+
+*{box-sizing:border-box}
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding-top: 72px; /* space for fixed navbar */
+}
+
+/* ====== Light pattern background (subtle professional) ====== */
+body::before{
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255,255,255,0.02), transparent 40%);
+  background-size: 18px 18px, 100% 120%;
+  opacity: 1;
+  mix-blend-mode: overlay;
+  z-index: 0;
+}
+
+/* ====== Sections ====== */
+section {
+  padding: 4.5rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* section card (surface) */
+.section-card {
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 1.6rem;
+  box-shadow: 0 8px 30px rgba(16,24,40,0.04);
+}
+
+/* ====== Navbar (transparent -> scrolled) ====== */
+.navbar {
+  transition: background-color .28s ease, backdrop-filter .28s ease, box-shadow .28s ease;
+  background: transparent;
+  backdrop-filter: blur(0px);
+}
+.navbar .nav-link { color: var(--text); transition: color .18s ease; }
+.navbar .navbar-brand, .navbar .nav-link { font-weight: 600; }
+
+/* when scrolled: add surface + subtle blur + shadow */
+.navbar-scrolled {
+  background: var(--glass);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 20px rgba(16,24,40,0.08);
+}
+
+/* Toggle button style */
+.navbar .btn-theme {
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-weight: 600;
+}
+
+/* ====== Hero / Home ====== */
+.hero {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  background-image: url("https://images.unsplash.com/photo-1518655048521-f130df041f66?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cG9ydGZvbGlvJTIwYmFja2dyb3VuZHxlbnwwfHwwfHx8MA%3D%3D");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.display-5 { line-height: 1.05; }
+
+/* Avatar placeholder */
+.avatar-placeholder {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(13,202,240,0.08), rgba(122,167,255,0.06));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: 4px solid rgba(255,255,255,0.6);
+}
+
+/* profile image when provided */
+.avatar-img {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #ddd;
+  box-shadow: 0px 4px 18px rgba(0,0,0,0.15);
+}
+
+.avatar-placeholder img {
+  width: 320px;          /* fixed beautiful size */
+  height: 320px;
+  object-fit: cover;      /* crop nicely without stretching */
+  border-radius: 50%;     /* make it circle */
+  border: 4px solid #ddd; /* light border */
+  box-shadow: 0px 4px 18px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 768px) {
+  .avatar-placeholder img {
+    width: 180px;
+    height: 180px;        /* smaller size for mobile */
+  }
+}
+
+
+/* small screens */
+@media (max-width: 576px) {
+  .avatar-placeholder, .avatar-img { width: 160px; height: 160px; }
+  body { padding-top: 86px; }
+}
+
+/* ====== Skills badges ====== */
+.skill-badge {
+  display:inline-block;
+  margin: 0.28rem;
+  padding: 0.42rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(13,202,240,0.07);
+  border: 1px solid rgba(13,202,240,0.09);
+  font-weight:600;
+}
+
+/* ====== Project card placeholder ====== */
+.project-img {
+  width: 100%;
+  height: 160px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, rgba(122,167,255,0.06), rgba(13,202,240,0.04));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--muted);
+}
+
+/* ====== Social icons ====== */
+.social-icon {
+  width:36px;
+  height:36px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:8px;
+  margin-right:8px;
+  transition: transform .15s ease, background .15s ease;
+}
+.social-icon:hover{ transform: translateY(-3px); background: rgba(13,202,240,0.08); }
+
+/* ====== Links & buttons hover color change ====== */
+a.btn-primary {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+a.btn-primary:hover, .btn-primary:focus {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* nav links hover */
+.nav-link:hover { color: var(--primary); }
+
+/* input focus */
+.form-control:focus {
+  box-shadow: 0 0 0 0.15rem rgba(13,202,240,0.12);
+  border-color: var(--primary);
+}
+
+/* footer */
+footer { color: var(--muted); padding: 2rem 0; }
+
+/* small utility */
+.lead { color: var(--muted); }
+
+/* ensure surface looks good in dark theme */
+[data-theme="dark"] .section-card { box-shadow: 0 6px 20px rgba(2,6,23,0.5); border: 1px solid rgba(255,255,255,0.02); }
